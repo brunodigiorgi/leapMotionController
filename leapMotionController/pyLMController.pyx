@@ -55,8 +55,8 @@ class PyLMVector:
 class PyLMBone:
     def __init__(self, type):
         self.type = type
-        self.prevJoint = PyLMVector()
-        self.nextJoint = PyLMVector()
+        self.prev_joint = PyLMVector()
+        self.next_joint = PyLMVector()
 
 class PyLMFinger:
     def __init__(self, type):
@@ -68,10 +68,10 @@ class PyLMHand:
         self.type = type
         self.isValid = False
         self.detected = False
-        self.palmPosition = PyLMVector()
-        self.palmVelocity = PyLMVector()
-        self.palmNormal = PyLMVector()
-        self.palmPositionNormalized = PyLMVector()
+        self.palm_position = PyLMVector()
+        self.palm_velocity = PyLMVector()
+        self.palm_normal = PyLMVector()
+        self.palm_position_normalized = PyLMVector()
         self.fingers = [PyLMFinger(i) for i in range(NFINGERS)]
 
 
@@ -103,10 +103,10 @@ cdef class PyLMController:
     cdef copy_hand(self, pyh, LMHand ch):
         pyh.isValid = ch.isValid
         pyh.detected = ch.detected
-        self.copy_vector(pyh.palmPosition, ch.palmPosition)
-        self.copy_vector(pyh.palmVelocity, ch.palmVelocity)
-        self.copy_vector(pyh.palmNormal, ch.palmNormal)
-        self.copy_vector(pyh.palmPositionNormalized, ch.palmPositionNormalized)
+        self.copy_vector(pyh.palm_position, ch.palmPosition)
+        self.copy_vector(pyh.palm_velocity, ch.palmVelocity)
+        self.copy_vector(pyh.palm_normal, ch.palmNormal)
+        self.copy_vector(pyh.palm_position_normalized, ch.palmPositionNormalized)
         for ifinger in range(NFINGERS):
             pyf = pyh.fingers[ifinger]
             cf = ch.fingers[ifinger]
@@ -119,8 +119,8 @@ cdef class PyLMController:
             self.copy_bone(pyb, cb)
 
     cdef copy_bone(self, pyb, LMBone cb):
-        self.copy_vector(pyb.prevJoint, cb.prevJoint)
-        self.copy_vector(pyb.nextJoint, cb.nextJoint)
+        self.copy_vector(pyb.prev_joint, cb.prevJoint)
+        self.copy_vector(pyb.next_joint, cb.nextJoint)
 
     cdef copy_vector(self, pyv, LMVector cv):
         pyv.assign(cv.x, cv.y, cv.z)
