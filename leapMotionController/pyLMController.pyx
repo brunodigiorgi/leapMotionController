@@ -66,7 +66,7 @@ class PyLMFinger:
 class PyLMHand:
     def __init__(self, type):
         self.type = type
-        self.isValid = False
+        self.is_valid = False
         self.detected = False
         self.palm_position = PyLMVector()
         self.palm_velocity = PyLMVector()
@@ -101,7 +101,7 @@ cdef class PyLMController:
         return self.hands
 
     cdef copy_hand(self, pyh, LMHand ch):
-        pyh.isValid = ch.isValid
+        pyh.is_valid = ch.isValid
         pyh.detected = ch.detected
         self.copy_vector(pyh.palm_position, ch.palmPosition)
         self.copy_vector(pyh.palm_velocity, ch.palmVelocity)
