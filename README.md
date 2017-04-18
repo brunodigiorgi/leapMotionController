@@ -12,3 +12,9 @@
 
 	python -c "import leapMotionController; print(leapMotionController.__path__)"
 
+*********
+*** Usage
+*********
+
+The controller is working also as a background application, when Leap Motion Controller daemon is running.
+Check that the option "Allow Background Apps" is set, in Leap Motion Controller settings.

@@ -57,7 +57,7 @@ public:
 class LMController {
 public:
     
-    LMController() : hands(NHANDS){};
+    LMController();
     
     // from LM Documentation:
     // "Polling the Controller object for frames is the simplest and often

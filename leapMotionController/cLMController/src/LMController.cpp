@@ -11,6 +11,10 @@
 #include <cmath>
 #include "LMController.h"
 
+LMController::LMController() : hands(NHANDS){
+    controller.setPolicy(Leap::Controller::PolicyFlag::POLICY_BACKGROUND_FRAMES);
+};
+
 bool LMController::hasFocus(){
     return controller.hasFocus();
 }
